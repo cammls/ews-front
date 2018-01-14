@@ -17,7 +17,6 @@ const getters = {
   isSuperAdmin: state => state.superAdmin,
   isLogged: state => state.logged,
   getCompany: state => state.company
-
 }
 
 const actions = {

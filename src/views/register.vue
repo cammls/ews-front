@@ -54,6 +54,7 @@ export default {
         this.registerCompany(company)
         .then(() => this.registerUser({email: this.form.email, password: this.form.password, passwordConfirmation: this.form.passwordConfirmation}))
         .then(() => this.loginUser({email: this.form.email, password: this.form.password}))
+        .then(() => this.$router.push('/'))
         .catch(err => console.log(err)) // TODO afficher err
       }
     }
