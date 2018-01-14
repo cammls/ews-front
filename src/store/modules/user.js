@@ -1,9 +1,12 @@
 import api from '../../api'
+import jwtDecode from 'jwt-decode'
 
 const state = {
   email: '',
   token: '',
   admin: false,
+  superAdmin: false,
+  company: '',
   logged: false
 }
 
@@ -11,20 +14,30 @@ const getters = {
   getEmail: state => state.email,
   getToken: state => state.token,
   isAdmin: state => state.admin,
-  isLogged: state => state.logged
+  isSuperAdmin: state => state.superAdmin,
+  isLogged: state => state.logged,
+  getCompany: state => state.company
+
 }
 
 const actions = {
   loginUser(context, {email, password}) {
     return api.post('login', {email, password})
-      .then((res) => context.commit('setUser', { email, token: res.data.token }))
+      .then((res) => {
+        const token = res.data.token
+        const { company, admin, superAdmin } = jwtDecode(token)
+        context.commit('setUser', { email, company, admin, superAdmin, token })
+      })
   }
 }
 
 const mutations = {
-  setUser(state, { email, token }) {
+  setUser(state, { email, company, admin, superAdmin, token }) {
     state.email = email
     state.logged = true
+    state.company = company
+    state.admin = admin
+    state.superAdmin = superAdmin
     state.token = token
   }
 }
