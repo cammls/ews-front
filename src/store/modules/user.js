@@ -18,7 +18,17 @@ const actions = {
   loginUser(context, {email, password}) {
     return api.post('login', {email, password})
       .then((res) => context.commit('setUser', { email, token: res.data.token }))
-  }
+  },
+  registerUser(context, {email, password, passwordConfirmation}) {
+    if (password === passwordConfirmation) {
+      return api.post('register/user', {email, password})
+        .then((res) => console.log(res))
+    }
+  },
+  registerCompany(context, {name, user, email, password, passwordConfirmation}) {
+    return api.post('register/company', {name, user})
+      .then((res,context) => registerUser(context, {email, password}))
+  },
 }
 
 const mutations = {
