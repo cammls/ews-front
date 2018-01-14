@@ -36,24 +36,24 @@ export default {
     }
   },
   watch: {
-    passwordConfirmation: function(oldPassword,newPassword) {
+    passwordConfirmation: function(oldPassword, newPassword) {
       this.confirmPassword()
     }
   },
   methods: {
-    ...mapActions(['registerUser']),
+    ...mapActions(['registerUser', 'registerCompany', 'loginUser']),
     confirmPassword() {
       if (this.password === this.passwordConfirmation) {
-        this.invalid = false;
-        console.log(this.invalid);
+        this.invalid = false
+        console.log(this.invalid)
       }
     },
     onSubmit() {
       if (this.password === this.passwordConfirmation) {
         let company = {name: this.form.name, user: this.form.email}
-        let user = {email: this.form.email, password: this.form.password, passwordConfirmation: this.form.passwordConfirmation}
-        this.registerCompany(Object.assign({},company,user))
-        .then(() => this.$router.push('/'))
+        this.registerCompany(company)
+        .then(() => this.registerUser({email: this.form.email, password: this.form.password, passwordConfirmation: this.form.passwordConfirmation}))
+        .then(() => this.loginUser({email: this.form.email, password: this.form.password}))
         .catch(err => console.log(err)) // TODO afficher err
       }
     }
