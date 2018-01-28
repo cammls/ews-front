@@ -4,6 +4,7 @@ import Home from '@/views/Home'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import myExports from '@/views/myExports'
+import Settings from '@/views/settings'
 import store from '../store'
 
 Vue.use(Router)
@@ -43,6 +44,11 @@ export default new Router({
       path: '/mes-exports',
       name: 'myExports',
       component: myExports
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: Settings
     }
   ]
 })

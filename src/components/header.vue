@@ -3,7 +3,8 @@
   <el-menu theme="dark"  mode="horizontal">
     <router-link to="/"><el-menu-item index="1">Monarq</el-menu-item></router-link>
     <div v-if="getEmail">
-      <el-menu-item @click="gotToHome" class="right" index="3">Déconnexion</el-menu-item>
+      <el-menu-item @click="goToHome" class="right" index="3">Déconnexion</el-menu-item>
+      <el-menu-item @click="goToSettings" class="right" index="3">Paramètres</el-menu-item>
       <el-menu-item @click="goToShipments" class="right" index="2">Mes dossiers</el-menu-item>
 
     </div>
@@ -52,6 +53,9 @@ export default {
     },
     goToShipments(){
       this.$router.push('/mes-exports')
+    },
+    goToSettings(){
+      this.$router.push('/settings')
     }
   }
 }
