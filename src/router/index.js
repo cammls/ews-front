@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
+import New from '@/views/new'
 import store from '../store'
 
 Vue.use(Router)
@@ -13,6 +14,18 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+      beforeEnter: (to, from, next) => {
+        if (!store.getters.isLogged) {
+          next('/login')
+        } else {
+          next()
+        }
+      }
+    },
+    {
+      path: '/new',
+      name: 'New Shipment',
+      component: New,
       beforeEnter: (to, from, next) => {
         if (!store.getters.isLogged) {
           next('/login')

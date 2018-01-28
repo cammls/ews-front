@@ -9,7 +9,7 @@ const store = new Vuex.Store({
   strict: true,
   modules,
   plugins: [createPersistedState({
-    paths: ['user']
+    paths: ['user', 'company']
   })]
 })
 
