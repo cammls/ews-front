@@ -2,7 +2,15 @@
   <div class="menu">
   <el-menu theme="dark"  mode="horizontal">
     <router-link to="/"><el-menu-item index="1">Monarq</el-menu-item></router-link>
-    <el-menu-item @click="gotToHome" class="right" index="2">Home</el-menu-item>
+    <div v-if="getEmail">
+      <el-menu-item @click="gotToHome" class="right" index="3">Déconnexion</el-menu-item>
+      <el-menu-item @click="gotToHome" class="right" index="2">Mes dossiers</el-menu-item>
+      
+    </div>
+    <div v-else>
+      <el-menu-item @click="gotToHome" class="right" index="2">Se Connecter</el-menu-item>
+      <el-menu-item @click="gotToHome" class="right" index="3">S'inscrire'</el-menu-item>
+    </div>
   </el-menu>
   </div>
 </template>
@@ -33,8 +41,11 @@
 </style>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
+  computed: {
+    ...mapGetters(['getEmail'])
+  },
   methods: {
     gotToHome() {
       this.$router.push('/')

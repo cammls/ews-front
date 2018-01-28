@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <h1>Home</h1>
     <div>
@@ -9,7 +10,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-
 export default {
   name: 'Home',
   computed: {
