@@ -4,12 +4,12 @@
     <router-link to="/"><el-menu-item index="1">Monarq</el-menu-item></router-link>
     <div v-if="getEmail">
       <el-menu-item @click="gotToHome" class="right" index="3">Déconnexion</el-menu-item>
-      <el-menu-item @click="gotToHome" class="right" index="2">Mes dossiers</el-menu-item>
-      
+      <el-menu-item @click="goToShipments" class="right" index="2">Mes dossiers</el-menu-item>
+
     </div>
     <div v-else>
-      <el-menu-item @click="gotToHome" class="right" index="2">Se Connecter</el-menu-item>
-      <el-menu-item @click="gotToHome" class="right" index="3">S'inscrire'</el-menu-item>
+      <el-menu-item @click="gotTo(login)" class="right" index="2">Se Connecter</el-menu-item>
+      <el-menu-item @click="gotTo(register)" class="right" index="3">S'inscrire'</el-menu-item>
     </div>
   </el-menu>
   </div>
@@ -49,6 +49,9 @@ export default {
   methods: {
     gotToHome() {
       this.$router.push('/')
+    },
+    goToShipments(){
+      this.$router.push('/mes-exports')
     }
   }
 }
